@@ -1,16 +1,214 @@
-# React + Vite
+# Multimodal News → Tweet Generator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An AI-powered system that automatically generates concise tweets from news images using multimodal AI models.
 
-Currently, two official plugins are available:
+The system extracts textual content from news images using OCR, analyzes the visual content using an image captioning model, and combines both to generate an informative tweet.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+# Project Overview
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+This project demonstrates how multimodal AI can be used to transform news content into social media-ready posts automatically.
 
-## Expanding the ESLint configuration
+The system processes a news image, extracts textual information, analyzes the visual context, and generates a short tweet summarizing the news content.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+The generated tweet can optionally be posted directly to Twitter using the Twitter API.
+
+---
+
+# Features
+
+• Extracts text from news images using OCR
+• Generates image captions using a vision-language model
+• Produces concise tweets from extracted content
+• Interactive web interface for uploading news images
+• Optional Twitter API integration for automatic posting
+• Evaluation metrics for generated tweets (BLEU, ROUGE, BERTScore)
+
+---
+
+# System Architecture
+
+User Upload Image
+↓
+Frontend (React + Vite UI)
+↓
+FastAPI Backend
+↓
+OCR Module (Tesseract)
+↓
+Image Caption Module (BLIP / Vision Transformer)
+↓
+Tweet Generation Module (Transformer Model)
+↓
+Generated Tweet
+↓
+Optional Twitter Posting (Tweepy API)
+
+---
+
+# Technology Stack
+
+Frontend
+React, Vite, Axios, TailwindCSS
+
+Backend
+FastAPI, Python
+
+Cloud / Deployment (optional)
+Render / Docker / HuggingFace Spaces
+
+Tools & Frameworks
+Tesseract OCR, Tweepy
+
+AI / ML Models
+Transformers (HuggingFace), BLIP Image Captioning Model
+
+Evaluation Metrics
+BLEU Score
+ROUGE Score
+BERTScore
+
+---
+
+# Project Structure
+
+multimodal-news-tweet-generator
+
+backend
+│
+├── main.py
+├── services
+│   ├── ocr_service.py
+│   ├── image_caption_service.py
+│   ├── tweet_generator.py
+│   └── twitter_service.py
+│
+├── evaluation
+│   └── evaluate_model.py
+│
+└── requirements.txt
+
+frontend
+│
+├── src
+│   ├── App.jsx
+│   ├── main.jsx
+│   └── index.css
+│
+├── package.json
+└── vite.config.js
+
+README.md
+SETUP_INSTRUCTIONS.md
+
+---
+
+# Setup Instructions
+
+Clone the repository
+
+git clone https://github.com/your-username/multimodal-news-tweet-generator.git
+cd multimodal-news-tweet-generator
+
+---
+
+## Backend Setup
+
+cd backend
+
+Create virtual environment
+
+python -m venv venv
+
+Activate environment
+
+Windows
+venv\Scripts\activate
+
+Install dependencies
+
+pip install -r requirements.txt
+
+Run the backend server
+
+uvicorn main:app --reload
+
+Backend will run at
+
+http://127.0.0.1:8000
+
+---
+
+## Frontend Setup
+
+cd frontend
+
+Install dependencies
+
+npm install
+
+Start the frontend
+
+npm run dev
+
+Frontend will run at
+
+http://localhost:5173
+
+---
+
+# Evaluation Metrics
+
+To evaluate tweet generation performance the following metrics are used:
+
+BLEU Score
+Measures n-gram similarity between generated tweet and reference tweet.
+
+ROUGE Score
+Measures overlap between generated and reference summaries.
+
+BERTScore
+Measures semantic similarity using contextual embeddings.
+
+---
+
+# Example Workflow
+
+1 Upload a news image
+2 OCR extracts text from the image
+3 Image caption model analyzes visual content
+4 Tweet generator summarizes the information
+5 Generated tweet is displayed to the user
+6 Optionally post tweet using Twitter API
+
+---
+
+# Innovation
+
+• Combines visual and textual information for content generation
+• Automates social media summarization for news articles
+• Integrates OCR, vision models, and NLP models into a unified pipeline
+
+---
+
+# Future Enhancements
+
+• Support for multiple languages
+• Improved tweet summarization using larger language models
+• Real-time news monitoring system
+• Automatic hashtag and trend detection
+• Deployment as a public web application
+
+---
+
+# Author
+
+Akshai S
+BTech – Computer Science Engineering
+
+---
+
+# License
+
+This project is for academic and research purposes.
